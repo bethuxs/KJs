@@ -55,9 +55,10 @@
 		 * @param String fx
 		 */
 		cFx: function(fx) {
-			var este=$(this), rel = $('#'+este.data('to'));
 			return function(event) {
 				event.preventDefault();
+				var este=$(this),
+					rel = $('#'+este.data('to'));
 				rel[fx]();
 			}
 		},
