@@ -58,7 +58,7 @@
 			var este=$(this), rel = $('#'+este.data('to'));
 			return function(event) {
 				event.preventDefault();
-				(rel[fx])();
+				rel[fx]();
 			}
 		},
 

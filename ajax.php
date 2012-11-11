@@ -14,8 +14,8 @@ echo date("h:i:s d-M-Y");?>
 <?php if(isset($_GET['c'])):?>
 Este se cargo por confirmación
 <?php endif;?>
-<?php if(isset($_POST['nome'])):
-sleep(1);
-?>
-<br/>Hola <?php echo $_POST['nome'] ?>
+
+<?php if(isset($_POST['nome'])):?>
+	<?php sleep(1);?>
+	<?php var_dump($_POST)?>
 <?php endif;?>
