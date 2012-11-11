@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Titulo</title>
+<style>
+div#wrapper{width:80%;margin:auto}
+div#canvas{background:blue;color:white;width:80%;margin:auto}
+div.error{background:red;}
+</style>
+<script src="jquery.min.js"></script>
+<script src="jquery.kumbiaphp.new.js" type="text/javascript" data-debug="true"></script>
+</head>
+<body>
+<div id="wrapper">
+	<a href="#" class="js-confirm" data-msg="Mensaje de confirmación">Confirmar</a>
+	<a href="ajax.php" class="js-remote" data-div="canvas">Cargar Ajax</a>
+	<a href="ajax.php?c=1" class="js-remote-confirm" data-div="canvas" data-msg="¿Desea cargar?">Cargar Confirmada</a>
+	<a class="js-toggle" data-div="canvas" href="#">Oculta/Muestra</a>
+	<form class="js-remote" data-div="canvas" action="ajax.php" data-error="Error" data-load="Cargando.." method="post">
+		<input name="nome" id="Nome"/><br/>
+		<select data-kumbia="remote" data-url="ajax.php" data-update="datos_ciudades_id">
+		<option>-</option>
+		<option value="1">Colores</option>
+		<option value="2">Frutas</option>
+		</select>
+		<select id="depende"></select>
+		
+		<button type="submit">Enviar</button>
+	</form>
+	<div id="canvas">Esto cambia con Ajax</div>
+</div>
+</body>
+</html>
