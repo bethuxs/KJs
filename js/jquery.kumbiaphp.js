@@ -94,10 +94,11 @@
 			event.preventDefault();
 			var este = $(this), button = $('[type=submit]', este);
 			button.attr('disabled', 'disabled');
-			var url = este.attr('action'),
-				div = este.data('to'),
-				capa = $('#'+div),
-				info = este.serialize();
+			var url = este.attr('action'), /*action del form*/
+				div = este.data('to'), /*capa a enviar el resultado*/
+				capa = $('#'+div), /*objeto de la capa div*/
+				info = este.serialize(), /*información a enviar*/
+				offset = este.data('offset') || 100; /*offset de la animación*/
 			$.ajax({
                 type: 'POST',
                 url: url,
