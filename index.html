@@ -5,14 +5,17 @@
 <title>KJs - Plugin JavaScript for KumbiaPHP Framework</title>
 <style>
 div#wrapper{width:80%;margin:auto}
-div#canvas{color:white;width:80%;margin:auto}
+.msg{color:#555;width:80%;margin:auto;}
 .error{background:red;}
+p{margin-bottom:6ex;}
 </style>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.kumbiaphp.js" type="text/javascript" data-debug="true"></script>
 </head>
 <body>
+
 <div id="wrapper">
+	<div id="canvas" class="msg">Esto cambia con Ajax</div>
 	<div id="logo">
 		<img src="kumbiaphp.png" />
 	
@@ -58,7 +61,7 @@ div#canvas{color:white;width:80%;margin:auto}
 		
 		<button type="submit">Enviar</button>
 	</form>
-	<div id="canvas">Esto cambia con Ajax</div>
+	
 </div>
 </body>
 </html>
