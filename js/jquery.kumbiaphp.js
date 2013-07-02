@@ -16,7 +16,6 @@
  * @copyright  Copyright (c) 2005-2012 Kumbia Team (http://www.kumbiaphp.com)
  * @license	http://wiki.kumbiaphp.com/Licencia	 New BSD License
  */
-
 (function($) {
 	/**
 	 * Objeto KumbiaPHP
@@ -93,18 +92,34 @@
 		 */
 		cFRemote: function(event){
 			event.preventDefault();
-			este = $(this);
-			var button = $('[type=submit]', este);
+			var este = $(this), button = $('[type=submit]', este);
 			button.attr('disabled', 'disabled');
-			var url = este.attr('action');
-			var div = este.attr('data-to');
-			$.post(url, este.serialize(), function(data, status){
-				var capa = $('#'+div);
-				capa.html(data);
-				capa.hide();
-				capa.show('slow');
-				button.attr('disabled', null);
-			});
+			var url = este.attr('action'),
+				div = este.data('to'),
+				capa = $('#'+div),
+				info = este.serialize();
+			$.ajax({
+                type: 'POST',
+                url: url,
+                data: info,
+                success: function(data, status){
+                    capa.html(data)
+                    .hide().removeClass('error')
+                    .show('slow', function(){
+                        $('html, body').animate({
+                            scrollTop: capa.offset().top - offset
+                        },'fast');
+                    });
+                    button.attr('disabled', null);
+                },
+                error:function(obj, status, error){
+                    capa.html(obj.response)
+						.addClass('error');
+                    button.attr('disabled', null);
+                    $('body').animate({scrollTop: capa.offset().top},'fast');
+                },
+                dataType: 'html'
+            });
 		},
 
 		/**
@@ -191,12 +206,15 @@
 		 *
 		 */
 		initialize: function() {
-			// Obtiene el publicPath, restando los caracteres que sobran
-			// de la ruta, respecto a la ruta de ubicacion del plugin de KumbiaPHP
-			// "javascript/jquery/jquery.kumbiaphp.js"
-			var src = $('script:last').attr('src');
-			this.publicPath = src.substr(0, src.length - 37);
-
+			try{
+				/* Esto apesta, mejor usar un atributo, se mantiene la vieja
+				 * forma por compatibilidad
+				 * Obtiene el publicPath, restando los caracteres que sobran
+				de la ruta, respecto a la ruta de ubicacion del plugin de KumbiaPHP
+				javascript/jquery/jquery.kumbiaphp.js"*/
+				var script = $('script:last-child'), src = script.attr('src');
+				this.publicPath =  script.data('path') || src.substr(0, src.length - 37);
+			}catch(e){}
 			// Enlaza a las clases por defecto
 			$(function(){
 				$.KumbiaPHP.bind();
@@ -207,4 +225,4 @@
 
 	// Inicializa el plugin
 	$.KumbiaPHP.initialize();
-})(jQuery);
+})(window.jQuery || window.Zepto);
