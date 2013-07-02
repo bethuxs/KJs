@@ -5,18 +5,48 @@
 <title>KJs - Plugin JavaScript for KumbiaPHP Framework</title>
 <style>
 div#wrapper{width:80%;margin:auto}
-div#canvas{background:blue;color:white;width:80%;margin:auto}
-div.error{background:red;}
+div#canvas{color:white;width:80%;margin:auto}
+.error{background:red;}
 </style>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.kumbiaphp.js" type="text/javascript" data-debug="true"></script>
 </head>
 <body>
 <div id="wrapper">
-	<a href="#" class="js-confirm" data-msg="Mensaje de confirmación">Confirmar</a>
-	<a href="ajax.php" class="js-remote" data-to="canvas">Cargar Ajax</a>
-	<a href="ajax.php?c=1" class="js-remote-confirm" data-to="canvas" data-msg="¿Desea cargar?">Cargar Confirmada</a>
-	<a class="js-toggle" data-to="canvas" href="#">Oculta/Muestra</a>
+	<div id="logo">
+		<img src="kumbiaphp.png" />
+	
+	</div>
+	<p>
+		<a href="#" class="js-confirm" data-msg="Mensaje de confirmación">Confirmar</a>
+		Muestra un mensaje de confirmación para seguir un enlace
+	</p>
+	
+	<p>
+		<a href="ajax.php" class="js-remote" data-to="canvas">Cargar Asincrónica</a>
+		Muestra un contenido cargado asincrónicamente
+	</p>
+	
+	<p>
+		<a href="ajax.php?c=1" class="js-remote-confirm" data-to="canvas" data-msg="¿Desea cargar?">Cargar Confirmada</a>
+		Muestra un contenido cargado asincrónicamente, pide confirmación para la carga
+	</p>
+	
+	<p>
+		<a class="js-toggle" data-to="logo" href="#">Oculta/Muestra </a>
+		Oculta o muestra un elemento
+	</p>
+	
+	<p>
+		<a class="js-fade-in" data-to="logo" href="#">Aparecer </a>
+		Oculta o muestra un elemento <strong>(Deprecated, es preferibles usar class de CSS)</strong>
+	</p>
+
+	<p>
+		<a class="js-fade-out" data-to="logo" href="#">Desvanecer </a>
+		Oculta o muestra un elemento <strong>(Deprecated, es preferibles usar class de CSS)</strong>
+	</p>	
+	
 	<form class="js-remote" data-to="canvas" action="ajax.php" data-error="Error" data-load="Cargando.." method="post">
 		<input name="nome" id="Nome"/><br/>
 		<select name="select" class="js-remote" data-url="ajax.php" data-update="depende">
